@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  pdv:
+    image: ${DOCKER_REGISTRY}pdv
+    build:
+      context: .
+      dockerfile: src/pdv/Dockerfile
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: pdv
+      MONGO_INITDB_ROOT_PASSWORD: pdvpwd
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: pdv
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pdvpwd
