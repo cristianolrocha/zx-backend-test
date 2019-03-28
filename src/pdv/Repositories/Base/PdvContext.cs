@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using MongoDB.Driver.GeoJsonObjectModel;
 using pdv.Models;
 using System;
 using System.Collections.Generic;
@@ -22,11 +21,11 @@ namespace pdv.Repositories.Base
 
         public IMongoCollection<Pdv> Pdvs => Database.GetCollection<Pdv>("pdv");
 
-        public Pdv Create(Pdv p)
+        public Pdv Create(Pdv pdv)
         {
-            Pdvs.InsertOne(p);
+            Pdvs.InsertOne(pdv);
 
-            return p;
+            return pdv;
         }
 
         public Pdv GetPdvById(string id)
@@ -34,19 +33,18 @@ namespace pdv.Repositories.Base
             return Pdvs.Find(x => x.id.Equals(id)).FirstOrDefault();
         }
 
-        public IEnumerable<Pdv> SearchPdv(FilterDefinition<Pdv> locationQuery)
+        public IEnumerable<Pdv> SearchPdv(FilterDefinition<Pdv> locationQuery, int limitItems)
         {
             try
             {
-                var pdvs = Pdvs.Find(locationQuery).Limit(10);
+                var pdvs = Pdvs.Find(locationQuery).Limit(limitItems);
 
-                if (pdvs != null)
+                if (pdvs == null)
                 {
-                    // var abc = pdvs.FirstOrDefault();
-                    return pdvs.ToList(); // Enumerable.Empty<Pdv>();
+                    return Enumerable.Empty<Pdv>();
                 }
 
-                return null;
+                return pdvs.ToList();
             }
             catch (Exception ex)
             {

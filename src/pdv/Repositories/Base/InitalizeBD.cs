@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using pdv.Models;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ namespace pdv.Repositories.Base
 {
     public static class InitalizeBD
     {
-        public static async System.Threading.Tasks.Task CreateDataAsync(IMongoDatabase db)
+        public static async Task CreateDataAsync(IMongoDatabase db)
         {
             var exists = CollectionExists(db, "pdv");
 
@@ -24,7 +23,7 @@ namespace pdv.Repositories.Base
             
             pdvsCollection.InsertMany(pdvs);
 
-            CreateIndexAsync(pdvsCollection);
+            await CreateIndexAsync(pdvsCollection);
         }
 
         private static async Task CreateIndexAsync(IMongoCollection<Pdv> pdvsCollection)
@@ -32,6 +31,11 @@ namespace pdv.Repositories.Base
             var builder = Builders<Pdv>.IndexKeys;
             var keys = builder.Geo2DSphere(tag => tag.address.coordinates);
             await pdvsCollection.Indexes.CreateOneAsync(keys);
+
+            var keyUnique = builder.Ascending("document");
+            var indexOptions = new CreateIndexOptions { Unique = true };
+            var model = new CreateIndexModel<Pdv>(keyUnique, indexOptions);
+            await pdvsCollection.Indexes.CreateOneAsync(model);
         }
 
         private static bool CollectionExists(IMongoDatabase db, string collectionName)

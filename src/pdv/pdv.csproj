@@ -25,9 +25,4 @@
     </Content>
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Repositories\Migrations\" />
-  </ItemGroup>
-
 </Project>

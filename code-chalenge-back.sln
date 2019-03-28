@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pdv", "src\pdv\pdv.csproj",
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{60377373-8969-4BB0-A7B7-B7B7A8323428}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{244042FB-4231-42B0-BF61-9AC0C96F220B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pdvTests", "tests\pdvTests\pdvTests.csproj", "{E4E6CEBC-3E8D-4D4A-A545-D7219094380C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +27,17 @@ Global
 		{60377373-8969-4BB0-A7B7-B7B7A8323428}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60377373-8969-4BB0-A7B7-B7B7A8323428}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60377373-8969-4BB0-A7B7-B7B7A8323428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4E6CEBC-3E8D-4D4A-A545-D7219094380C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4E6CEBC-3E8D-4D4A-A545-D7219094380C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4E6CEBC-3E8D-4D4A-A545-D7219094380C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4E6CEBC-3E8D-4D4A-A545-D7219094380C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FB9AEA7A-8942-4F42-925F-C0FD5D270BAB} = {DB03DB32-2A28-436B-A04B-7C54567023BE}
+		{E4E6CEBC-3E8D-4D4A-A545-D7219094380C} = {244042FB-4231-42B0-BF61-9AC0C96F220B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {026E2CB0-A89F-48A8-8E99-B26801409BE9}

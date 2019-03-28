@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace pdv.Repositories
+namespace pdv.Services
 {
-    public interface IPdvRepository
+    public interface IPdvService
     {
         Task<Pdv> CreatePdv(Pdv pdv, CancellationToken cancellationToken);
         Task<Pdv> GetPdvById(string id, CancellationToken cancellationToken);
-        Task<IEnumerable<Pdv>> SearchPdv(double lng, double lat, int limitItems, long radius, CancellationToken cancellationToken);
+        Task<IEnumerable<Pdv>> SearchPdv(double lng, double lat, CancellationToken cancellationToken);
     }
 }

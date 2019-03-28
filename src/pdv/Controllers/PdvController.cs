@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
+using pdv.Models;
+using pdv.Services;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Swashbuckle.AspNetCore.Annotations;
-using Microsoft.AspNetCore.Http;
-using pdv.Services;
-using pdv.Models;
 
 namespace pdv.Controllers
 {
@@ -17,9 +16,9 @@ namespace pdv.Controllers
     public class PdvController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly PdvService _pdvService;
+        private readonly IPdvService _pdvService;
 
-        public PdvController(IConfiguration configuration, PdvService pdvService)
+        public PdvController(IConfiguration configuration, IPdvService pdvService)
         {
             _configuration = configuration;
             _pdvService = pdvService;
@@ -77,7 +76,7 @@ namespace pdv.Controllers
         {
             var result = await _pdvService.SearchPdv(lng, lat, cancellationToken);
 
-            if (result is null)
+            if (result.Count() == 0)
                 return NotFound();
 
             return Ok(result);

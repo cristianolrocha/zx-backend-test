@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using pdv.Repositories;
 using pdv.Repositories.Base;
 using pdv.Services;
+using pdv.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace pdv
@@ -23,6 +24,8 @@ namespace pdv
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<Location>(Configuration.GetSection("Location"));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -37,7 +40,7 @@ namespace pdv
 
             services.Configure<ServerConfig>(Configuration);
 
-            services.AddTransient<PdvService>();
+            services.AddTransient<IPdvService, PdvService>();
             services.AddScoped<IPdvContext, PdvContext>();
             services.AddScoped<IPdvRepository, PdvRepository>();
 
@@ -57,19 +60,15 @@ namespace pdv
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
-            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");

@@ -9,8 +9,8 @@ namespace pdv.Repositories.Base
         IMongoDatabase Database { get; }
 
         IMongoCollection<Pdv> Pdvs { get; }
-        Pdv Create(Pdv p);
+        Pdv Create(Pdv pdv);
         Pdv GetPdvById(string id);
-        IEnumerable<Pdv> SearchPdv(FilterDefinition<Pdv> locationQuery);
+        IEnumerable<Pdv> SearchPdv(FilterDefinition<Pdv> locationQuery, int limitItems);
     }
 }
