@@ -6,6 +6,15 @@ services:
     build:
       context: .
       dockerfile: src/pdv/Dockerfile
+    environment:
+      mongo:database: pdv
+      mongo:host: mongo
+      mongo:port: 27017
+    secrets:
+      - source: mongo_user
+        target: mongo:user
+      - source: mongo_password
+        target: mongo:password
 
   mongo:
     image: mongo
@@ -21,3 +30,9 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: pdv
       ME_CONFIG_MONGODB_ADMINPASSWORD: pdvpwd
+
+secrets:
+  mongo_user:
+    file: ./secrets/mongo_user.txt
+  mongo_password:
+    file: ./secrets/mongo_password.txt
