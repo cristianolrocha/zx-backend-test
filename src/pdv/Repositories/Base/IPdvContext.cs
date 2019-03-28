@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using pdv.Models;
+using System.Collections.Generic;
 
 namespace pdv.Repositories.Base
 {
@@ -10,5 +11,6 @@ namespace pdv.Repositories.Base
         IMongoCollection<Pdv> Pdvs { get; }
         Pdv Create(Pdv p);
         Pdv GetPdvById(string id);
+        IEnumerable<Pdv> SearchPdv(FilterDefinition<Pdv> locationQuery);
     }
 }

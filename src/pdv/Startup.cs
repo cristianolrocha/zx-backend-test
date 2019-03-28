@@ -80,7 +80,7 @@ namespace pdv
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<IPdvContext>();
-                InitalizeBD.CreateData(db.Database);
+                InitalizeBD.CreateDataAsync(db.Database);
             }
         }
     }

@@ -71,7 +71,7 @@ namespace pdv.Controllers
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPost("search/{lng}/{lat}")]
-        [SwaggerResponse(StatusCodes.Status200OK, "The PDV was found")]
+        [SwaggerResponse(StatusCodes.Status200OK, "The PDV was found", typeof(IEnumerable<Pdv>))]
         [SwaggerResponse(StatusCodes.Status404NotFound, "The PDV was not found")]
         public async Task<IActionResult> SearchPdv(double lng, double lat, CancellationToken cancellationToken)
         {

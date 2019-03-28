@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace pdv.Models
 {
@@ -24,9 +23,4 @@ namespace pdv.Models
         public CoverageArea coverageArea { get; set; }
         public Address address { get; set; }
     }
-
-    //public class RootObject
-    //{
-    //    public List<Pdv> pdvs { get; set; }
-    //}
 }
