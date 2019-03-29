@@ -78,11 +78,6 @@ namespace pdv
 
             app.UseHealthChecks("/health");
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Bem vindo! Para o status da API: '/health'. Para acessar o Swagger: '/swagger'.");
-            });
-
             app.UseMvc();
 
             using (var scope = app.ApplicationServices.CreateScope())
