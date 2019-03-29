@@ -40,6 +40,8 @@ namespace pdv
 
             services.Configure<ServerConfig>(Configuration);
 
+            services.AddHealthChecks();
+
             services.AddTransient<IPdvService, PdvService>();
             services.AddScoped<IPdvContext, PdvContext>();
             services.AddScoped<IPdvRepository, PdvRepository>();
@@ -72,6 +74,13 @@ namespace pdv
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            app.UseHealthChecks("/health");
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Bem vindo! Para o status da API: '/health'. Para acessar o Swagger: '/swagger'.");
             });
 
             app.UseMvc();

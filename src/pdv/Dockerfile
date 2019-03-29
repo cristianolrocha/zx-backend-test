@@ -1,4 +1,5 @@
 FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+HEALTHCHECK CMD curl --fail http://localhost/health || exit 1
 WORKDIR /app
 EXPOSE 80
 
