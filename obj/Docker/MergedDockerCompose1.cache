@@ -1,0 +1,38 @@
+secrets:
+  mongo_password:
+    file: D:\Outros\code\bot-message\secrets\mongo_password.txt
+  mongo_user:
+    file: D:\Outros\code\bot-message\secrets\mongo_user.txt
+services:
+  mongo:
+    environment:
+      MONGO_INITDB_ROOT_PASSWORD: pdvpwd
+      MONGO_INITDB_ROOT_USERNAME: pdv
+    image: mongo
+  mongo-express:
+    environment:
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pdvpwd
+      ME_CONFIG_MONGODB_ADMINUSERNAME: pdv
+    image: mongo-express
+    ports:
+    - published: 8081
+      target: 8081
+    restart: always
+  pdv:
+    build:
+      context: D:\Outros\code\bot-message
+      dockerfile: src/bot/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      mongo:database: pdv
+      mongo:host: mongo
+      mongo:port: 27017
+    image: pdv
+    ports:
+    - target: 80
+    secrets:
+    - source: mongo_password
+      target: mongo:password
+    - source: mongo_user
+      target: mongo:user
+version: '3.4'

@@ -1,0 +1,10 @@
+D:\Outros\code\zx-backend-test\bin\Debug\pdv.dll
+D:\Outros\code\zx-backend-test\bin\Debug\pdv.pdb
+D:\Outros\code\zx-backend-test\obj\Debug\docker-compose.dcprojAssemblyReference.cache
+D:\Outros\code\zx-backend-test\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+D:\Outros\code\zx-backend-test\obj\Debug\docker-compose.dcproj.CopyComplete
+D:\Outros\code\bot-message\bin\Debug\bot.dll
+D:\Outros\code\bot-message\bin\Debug\bot.pdb
+D:\Outros\code\bot-message\obj\Debug\docker-compose.dcprojAssemblyReference.cache
+D:\Outros\code\bot-message\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+D:\Outros\code\bot-message\obj\Debug\docker-compose.dcproj.CopyComplete
